@@ -4,8 +4,12 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-      path: 'myaccount',
-      loadChildren: './modules/account/account.module#AccountModule'
+      path: 'client',
+      loadChildren: './modules/client/client.module#ClientModule'
+  },
+  {
+    path: 'auth',
+    loadChildren: './modules/auth/auth.module#AuthModule'
   },
   {
     path: 'home',

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountComponent } from './account/account.component';
 import { AccountRoutingModule } from './client-routing.module';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -10,10 +9,9 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    AccountRoutingModule,
-    RouterModule
+    AccountRoutingModule
   ],
   exports: [
   ]
 })
-export class AccountModule { }
+export class ClientModule { }

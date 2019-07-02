@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AccountModule } from '../modules/client/client.module';
+
+import { ClientModule } from '../modules/client/client.module';
+import { AuthModule } from '../modules/auth/auth.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
@@ -11,7 +13,8 @@ import { FooterComponent } from './footer/footer.component';
     ],
     imports: [
         RouterModule,
-        AccountModule
+        ClientModule,
+        AuthModule,
     ],
     exports: [
         HeaderComponent,
