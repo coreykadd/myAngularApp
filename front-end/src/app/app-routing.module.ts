@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: './modules/auth/auth.module#AuthModule'
   },
   {
+    path: 'admin',
+    loadChildren: './modules/admin/admin.module#AdminModule'
+  },
+  {
     path: 'home',
     component: HomeComponent
   },
