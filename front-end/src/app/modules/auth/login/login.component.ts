@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.invalid) {
       return;
+    } else {
+      alert('Login succesful' + JSON.stringify(this.loginForm.value));
+      this.router.navigate(['/home']);
     }
-
-    alert('Login succesful' + JSON.stringify(this.loginForm.value));
-    this.router.navigate(['/home']);
   }
 
   get form() {
