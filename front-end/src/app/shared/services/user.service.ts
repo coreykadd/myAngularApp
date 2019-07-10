@@ -13,7 +13,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users')
+    return this.http.get<User[]>(`${environment.api_url}${environment.users.users}`)
       .pipe(
         catchError(this.errorHandler)
       );
