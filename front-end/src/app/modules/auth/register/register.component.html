@@ -1,0 +1,47 @@
+<div class="row pt-5">
+  <div class="col-md-6 mx-auto">
+
+    <!-- Card -->
+    <div class="card rounded-0">
+
+      <!-- Card header -->
+      <div class="card-header">
+        <h3 class="mb-0">Register</h3>
+      </div>
+
+      <!-- Card body -->
+      <div class="card-body">
+        <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <!-- Email input -->
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="text" id="inputEmail" class="form-control rounded-0" formControlName="email" autofocus>
+          </div>
+
+          <!-- Email error -->
+          <div *ngIf="form['email'].errors && form['email'].touched" class="alert alert-danger">
+            <div *ngIf="form['email'].errors.required">Email required</div>
+            <div *ngIf="form['email'].errors.email">Invalid email</div>
+          </div>
+
+          <!-- Password inpit -->
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" class="form-control rounded-0" formControlName="password">
+          </div>
+
+          <!-- Password error -->
+          <div *ngIf="form['password'].errors && form['password'].touched" class="alert alert-danger">
+            <div *ngIf="form['password'].errors.required">Password required</div>
+            <div *ngIf="form['password'].errors.minlength">Password must be 6 or more characters</div>
+          </div>
+
+          <!-- Button -->
+          <button class="btn btn-primary float-right">Register</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

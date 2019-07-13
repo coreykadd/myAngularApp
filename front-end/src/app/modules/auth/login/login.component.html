@@ -19,7 +19,7 @@
       required>
 
     <!-- Password error -->
-    <div *ngIf="form['password'].errors && form['email'].touched" class="alert alert-danger">
+    <div *ngIf="form['password'].errors && form['password'].touched" class="alert alert-danger">
       <div *ngIf="form['password'].errors.required">Password required</div>
     </div>
 
