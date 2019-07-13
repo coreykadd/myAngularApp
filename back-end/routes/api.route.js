@@ -21,12 +21,28 @@ router.post('/register', (req, res) => {
     });
 });
 
+router.post('/login', (req, res) => {
+    let userData = req.body;
+
+    User.findOne({email: userData.email}, (err, doc) => {
+        if(err) {
+            console.log(err);
+        } else if (!doc) {
+            res.status(401).send('Invalid email');
+        } else if (doc.password !== userData.password) {
+            res.status(401).send('Invalid password');
+        } else {
+            res.status(200).send(doc);
+        }
+    });
+});
+
 router.get('/users', (req, res) => {
-    User.find((err, data) => {
+    User.find((err, doc) => {
         if(err) {
             res.status(404).send("No users found");
         } else {
-            res.status(200).send(data);
+            res.status(200).send(doc);
         }
     })
 });
