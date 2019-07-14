@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/authentication/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   formSubmitted = false;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.createLoginForm();
@@ -32,9 +33,20 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     } else {
-      alert('Login succesful' + JSON.stringify(this.loginForm.value));
-      this.router.navigate(['/home']);
+      this.authService.loginUser(this.loginForm.value)
+        .subscribe(
+          res => this.onLoginSuccess(res),
+          err => this.onLoginError(err)
+        );
     }
+  }
+
+  onLoginSuccess(res) {
+    console.log(res);
+  }
+
+  onLoginError(err) {
+    console.log(err);
   }
 
   get form() {

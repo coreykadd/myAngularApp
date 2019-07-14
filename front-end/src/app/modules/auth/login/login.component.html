@@ -1,30 +1,46 @@
-<div class="container">
-  <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <h1 class="h3 mb-3 font-weight-normal" id="signinText">Sign in</h1>
+<div class="row pt-5">
+  <div class="col-md-6 mx-auto">
 
-    <!-- Email input -->
-    <label for="inputEmail" class="sr-only">Email Address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email Address" formControlName="email"
-      name="email" required autofocus>
+    <!-- Card -->
+    <div class="card rounded-0">
 
-    <!-- Email error -->
-    <div *ngIf="form['email'].errors && form['email'].touched" class="alert alert-danger">
-      <div *ngIf="form['email'].errors.required">Email required</div>
-      <div *ngIf="form['email'].errors.email">Invalid email</div>
+      <!-- Card header -->
+      <div class="card-header">
+        <h3 class="mb-0">Login</h3>
+      </div>
+
+      <!-- Card body -->
+      <div class="card-body">
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+          <!-- Email input -->
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="text" id="inputEmail" class="form-control rounded-0" formControlName="email" autofocus>
+          </div>
+
+          <!-- Email error -->
+          <div *ngIf="form['email'].errors && form['email'].touched" class="alert alert-danger">
+            <div *ngIf="form['email'].errors.required">Email required</div>
+            <div *ngIf="form['email'].errors.email">Invalid email</div>
+          </div>
+
+          <!-- Password inpit -->
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" class="form-control rounded-0" formControlName="password">
+          </div>
+
+          <!-- Password error -->
+          <div *ngIf="form['password'].errors && form['password'].touched" class="alert alert-danger">
+            <div *ngIf="form['password'].errors.required">Password required</div>
+          </div>
+
+          <!-- Button -->
+          <button class="btn btn-success float-right" [disabled]="loginForm.invalid">Login</button>
+        </form>
+      </div>
+
     </div>
-
-    <!-- Password input -->
-    <label for="inputPassword" class="sr-only">Passwprd</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password"
-      required>
-
-    <!-- Password error -->
-    <div *ngIf="form['password'].errors && form['password'].touched" class="alert alert-danger">
-      <div *ngIf="form['password'].errors.required">Password required</div>
-    </div>
-
-    <!-- Submit button -->
-    <button class="btn btn-lg btn-primary btn-block" id="signInBtn" type="submit" [disabled]="!loginForm.valid">Sign
-      in</button>
-  </form>
+  </div>
 </div>

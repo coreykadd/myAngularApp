@@ -9,7 +9,8 @@ export const environment = {
     me: '/me/',
     users: '/users/',
     user: '/user/',
-    login: '/users/login/'
+    login: '/login/',
+    register: '/register/'
   }
 };
 

@@ -8,9 +8,19 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
+  public currentUser = null;
+
   constructor(private http: HttpClient) { }
 
+  registerUser(userCredentials) {
+    return this.http.post<Login>(`${environment.api_url}${environment.users.register}`, userCredentials);
+  }
+
+  loginUser(userCredentials) {
+    return this.http.post<Login>(`${environment.api_url}${environment.users.login}`, userCredentials);
+  }
+
   isLoggedIn(): boolean {
-    return true;
+    return this.currentUser != null;
   }
 }
