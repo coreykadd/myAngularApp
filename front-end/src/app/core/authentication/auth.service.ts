@@ -20,7 +20,15 @@ export class AuthService {
     return this.http.post<Login>(`${environment.api_url}${environment.users.login}`, userCredentials);
   }
 
+  storeJWT(token) {
+    sessionStorage.setItem('token', token);
+  }
+
   isLoggedIn(): boolean {
-    return this.currentUser != null;
+    return !!sessionStorage.getItem('token');
+  }
+
+  getToken() {
+    return sessionStorage.getItem('token');
   }
 }

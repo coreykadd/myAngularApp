@@ -8,11 +8,13 @@ import { ApplicationListComponent } from './application-list/application-list.co
 const routes: Routes = [
   {
     path: 'myaccount',
-    component: AccountComponent
+    component: AccountComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'applications',
-    component: ApplicationListComponent
+    component: ApplicationListComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

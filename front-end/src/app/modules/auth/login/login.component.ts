@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
 
   onLoginSuccess(res) {
     console.log(res);
+    this.authService.storeJWT(res.token);
+    this.router.navigate(['home']);
   }
 
   onLoginError(err) {

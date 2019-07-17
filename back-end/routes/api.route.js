@@ -1,8 +1,10 @@
 require('../config/config');
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/user.model');
+const tokenMiddleware = require('../middleware/token.middleware');
 
 router.get('/', (req, res) => {
     res.send('This is a blank page');
@@ -12,11 +14,13 @@ router.get('/', (req, res) => {
 router.post('/register', (req, res) => {
     let userData = req.body;
     let user = new User(userData);
-    user.save((err, data) => {
+    user.save((err, doc) => {
         if(err) {
             res.status(400).send({"err: ": err});
         } else {
-            res.status(201).send({"data: ": data});
+            let payload = {subject: doc._id};
+            let token = jwt.sign(payload, CONFIG.jwt);
+            res.status(201).send({doc: doc, token: token});
         }
     });
 });
@@ -32,12 +36,14 @@ router.post('/login', (req, res) => {
         } else if (doc.password !== userData.password) {
             res.status(401).send('Invalid password');
         } else {
-            res.status(200).send(doc);
+            let payload = {subject: doc._id};
+            let token = jwt.sign(payload, CONFIG.jwt);
+            res.status(200).send({doc: doc, token: token});
         }
     });
 });
 
-router.get('/users', (req, res) => {
+router.get('/users', tokenMiddleware.verifyToken, (req, res) => {
     User.find((err, doc) => {
         if(err) {
             res.status(404).send("No users found");
