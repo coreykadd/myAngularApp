@@ -36,8 +36,27 @@
             <div *ngIf="form['password'].errors.required">Password required</div>
           </div>
 
-          <!-- Button -->
-          <button class="btn btn-success float-right" [disabled]="loginForm.invalid">Login</button>
+          <!-- Remember me -->
+          <div class="remember">
+              <input type="checkbox">Remember Me
+            </div>
+
+          <div class="card-actions text-center">
+            <!-- Login button -->
+            <button class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
+          </div>
+
+          <div class="card-footer">
+            <!-- Sign up -->
+            <div class="d-flex justify-content-center links">
+              Don't have an account? <a href=#>Sign up here</a>
+            </div>
+            
+            <!-- Forgot password -->
+            <div class="d-flex justify-content-center">
+              <a href="#">Forgot your password?</a>
+            </div>
+          </div>
         </form>
       </div>
 
