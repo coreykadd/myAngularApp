@@ -41,9 +41,13 @@
               <input type="checkbox">Remember Me
             </div>
 
+          <div class="field-error text-danger" *ngIf="this.loginValid === false">
+            Invalid email or password. Please try again.
+          </div>
+
           <div class="card-actions text-center">
             <!-- Login button -->
-            <button class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
+            <button class="btn btn-success">Login</button>
           </div>
 
           <div class="card-footer">

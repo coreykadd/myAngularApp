@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/core/authentication/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   formSubmitted = false;
+  loginValid: boolean;
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
 
@@ -43,11 +44,13 @@ export class LoginComponent implements OnInit {
 
   onLoginSuccess(res) {
     console.log(res);
+    this.loginValid = true;
     this.authService.storeJWT(res.token);
     this.router.navigate(['home']);
   }
 
   onLoginError(err) {
+    this.loginValid = false;
     console.log(err);
   }
 
