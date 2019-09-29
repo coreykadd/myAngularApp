@@ -38,7 +38,7 @@ router.post('/login', (req, res) => {
         } else {
             let payload = {subject: doc._id};
             let token = jwt.sign(payload, CONFIG.jwt);
-            res.status(200).send({doc: doc, token: token});
+            res.status(200).send({access_token: token, refresh_token: 'null'});
         }
     });
 });

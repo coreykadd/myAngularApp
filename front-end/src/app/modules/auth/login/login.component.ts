@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   formSubmitted = false;
   loginValid: boolean;
+  rememberMe = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService,
+              private tokenService: TokenStorageService) { }
 
   ngOnInit() {
     this.createLoginForm();
@@ -28,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log(this.loginForm.value);
+    console.log(this.rememberMe);
 
     this.formSubmitted = true;
 
@@ -43,15 +47,16 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSuccess(res) {
-    console.log(res);
+    console.log('success ', res);
     this.loginValid = true;
-    this.authService.storeJWT(res.token);
+    this.tokenService.saveTokens(res, this.rememberMe);
+    this.authService.setIsAuthenticated(true);
     this.router.navigate(['home']);
   }
 
   onLoginError(err) {
     this.loginValid = false;
-    console.log(err);
+    console.log('error ', err);
   }
 
   get form() {

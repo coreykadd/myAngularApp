@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  isLoggedIn = false;
+  // isLoggedIn = false;
 
   constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.isLoggedIn = this.authService.isLoggedIn();
+    // this.isLoggedIn = this.authService.isAuthenticated;
   }
 
   logout() {

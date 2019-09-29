@@ -6,7 +6,7 @@
 
       <!-- Card header -->
       <div class="card-header">
-        <h3 class="mb-0">Login</h3>
+        <h3 class="mb-0">{{ 'LOGIN.LOGIN' | translate }}</h3>
       </div>
 
       <!-- Card body -->
@@ -15,50 +15,50 @@
 
           <!-- Email input -->
           <div class="form-group">
-            <label for="inputEmail">{{ 'Email' | translate }}</label>
+            <label for="inputEmail">{{ 'LOGIN.EMAIL' | translate }}</label>
             <input type="text" id="inputEmail" class="form-control rounded-0" formControlName="email" autofocus>
           </div>
 
           <!-- Email error -->
           <div *ngIf="form['email'].errors && form['email'].touched" class="alert alert-danger">
-            <div *ngIf="form['email'].errors.required">Email required</div>
-            <div *ngIf="form['email'].errors.email">Invalid email</div>
+            <div *ngIf="form['email'].errors.required">{{ 'LOGIN.EMAIL_REQUIRED' | translate }}</div>
+            <div *ngIf="form['email'].errors.email">{{ 'LOGIN.INVALID_EMAIL' | translate }}</div>
           </div>
 
           <!-- Password inpit -->
           <div class="form-group">
-            <label for="inputPassword">Password</label>
+            <label for="inputPassword">{{ 'LOGIN.PASSWORD' | translate }}</label>
             <input type="password" id="inputPassword" class="form-control rounded-0" formControlName="password">
           </div>
 
           <!-- Password error -->
           <div *ngIf="form['password'].errors && form['password'].touched" class="alert alert-danger">
-            <div *ngIf="form['password'].errors.required">Password required</div>
+            <div *ngIf="form['password'].errors.required">{{ 'LOGIN.PASSWORD_REQUIRED' | translate }}</div>
           </div>
 
           <!-- Remember me -->
           <div class="remember">
-              <input type="checkbox">Remember Me
+              <input type="checkbox" [(ngModel)]="rememberMe" [ngModelOptions]="{standalone: true}">{{ 'LOGIN.REMEMBER_ME' | translate }}
             </div>
 
           <div class="field-error text-danger" *ngIf="this.loginValid === false">
-            Invalid email or password. Please try again.
+            {{ 'LOGIN.LOGIN_ERROR_1' | translate }}
           </div>
 
           <div class="card-actions text-center">
             <!-- Login button -->
-            <button class="btn btn-success">Login</button>
+            <button class="btn btn-success">{{ 'LOGIN.LOGIN' | translate }}</button>
           </div>
 
           <div class="card-footer">
             <!-- Sign up -->
             <div class="d-flex justify-content-center links">
-              Don't have an account? <a href=#>Sign up here</a>
+              {{ 'LOGIN.HAVE_ACCOUNT' | translate }} <a href=#>{{ 'LOGIN.SIGN_UP_HERE' | translate }}</a>
             </div>
             
             <!-- Forgot password -->
             <div class="d-flex justify-content-center">
-              <a href="#">Forgot your password?</a>
+              <a href="#">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
             </div>
           </div>
         </form>

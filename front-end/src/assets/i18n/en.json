@@ -1,7 +1,15 @@
 {
   "LOGIN": {
-    "HEADER": "Login",
+    "LOGIN": "Login",
     "EMAIL": "Email",
-    "PASSWORD": "Password"
+    "PASSWORD": "Password",
+    "PASSWORD_REQUIRED": "Password required",
+    "EMAIL_REQUIRED": "Email required",
+    "INVALID_EMAIL": "Invalid email",
+    "REMEMBER_ME": "Remember Me",
+    "LOGIN_ERROR_1": "Email or password is incorrect. Please try again.",
+    "HAVE_ACCOUNT": "Don't have an account?",
+    "SIGN_UP_HERE": "Sign up here.",
+    "FORGOT_PASSWORD": "Forgot your password?"
   }
 }

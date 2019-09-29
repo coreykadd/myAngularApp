@@ -1,38 +1,57 @@
 import { Injectable } from '@angular/core';
 import { Login } from 'src/app/shared/models/login.model';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ApiService } from './api.service';
+import { TokenStorageService } from './token-storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public currentUser = null;
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private apiService: ApiService, private tokenService: TokenStorageService) { }
 
-  registerUser(userCredentials) {
-    return this.http.post<Login>(`${environment.api_url}${environment.users.register}`, userCredentials);
+  registerUser(userCredentials: Login) {
+    return this.apiService.post(`${environment.users.register}`, userCredentials);
   }
 
-  loginUser(userCredentials) {
-    return this.http.post<Login>(`${environment.api_url}${environment.users.login}`, userCredentials);
+  loginUser(userCredentials: Login) {
+    return this.apiService.post(`${environment.users.login}`, userCredentials);
   }
 
-  storeJWT(token) {
-    sessionStorage.setItem('token', token);
+  getUserId() {
+    const token = this.getToken('access_token');
+    return token ? token.subject : undefined;
   }
 
-  isLoggedIn(): boolean {
-    return !!sessionStorage.getItem('token');
+  getToken(type) {
+    const token = this.tokenService.getToken(type);
+
+    if (token && !this.isTokenExpired(token)) {
+      return token;
+    } else {
+      return null;
+    }
   }
 
-  getToken() {
-    return sessionStorage.getItem('token');
+  isTokenExpired(token) {
+    const date = new Date(token.exp * 1000);
+    return date ? (date.valueOf() < new Date().valueOf()) : false;
+  }
+
+  setIsAuthenticated(isAuthenticated) {
+    this.isAuthenticatedSubject.next(isAuthenticated);
+  }
+
+  getIsAuthenticated() {
+    return this.isAuthenticatedSubject.value;
   }
 
   logoutUser() {
-    sessionStorage.removeItem('token');
+    this.tokenService.destroyTokens();
+    this.setIsAuthenticated(false);
   }
 }
