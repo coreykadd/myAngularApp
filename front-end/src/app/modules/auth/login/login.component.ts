@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
               private tokenService: TokenStorageService) { }
 
   ngOnInit() {
+    this.checkUserRole();
     this.createLoginForm();
   }
 
@@ -51,12 +52,21 @@ export class LoginComponent implements OnInit {
     this.loginValid = true;
     this.tokenService.saveTokens(res, this.rememberMe);
     this.authService.setIsAuthenticated(true);
+    this.authService.getUserRole();
     this.router.navigate(['home']);
   }
 
   onLoginError(err) {
     this.loginValid = false;
     console.log('error ', err);
+  }
+
+  checkUserRole() {
+    console.log('ROLEL ', this.authService.getUserRole());
+    if (this.authService.getUserRole()) {
+      this.authService.setIsAuthenticated(true);
+      this.router.navigate(['home']);
+    }
   }
 
   get form() {

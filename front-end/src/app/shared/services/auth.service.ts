@@ -27,6 +27,11 @@ export class AuthService {
     return token ? token.subject : undefined;
   }
 
+  getUserRole() {
+    const token = this.getToken('access_token');
+    return token ? token.role : undefined;
+  }
+
   getToken(type) {
     const token = this.tokenService.getToken(type);
 
