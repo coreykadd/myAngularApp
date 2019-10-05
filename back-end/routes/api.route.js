@@ -18,7 +18,7 @@ router.post('/register', (req, res) => {
         if(err) {
             res.status(400).send({"err: ": err});
         } else {
-            let payload = {subject: doc._id};
+            let payload = {subject: doc._id, role: doc.role};
             let token = jwt.sign(payload, CONFIG.jwt);
             res.status(201).send({doc: doc, token: token});
         }
@@ -36,7 +36,7 @@ router.post('/login', (req, res) => {
         } else if (doc.password !== userData.password) {
             res.status(401).send('Invalid password');
         } else {
-            let payload = {subject: doc._id};
+            let payload = {subject: doc._id, role: doc.role};
             let token = jwt.sign(payload, CONFIG.jwt);
             res.status(200).send({access_token: token, refresh_token: 'null'});
         }
