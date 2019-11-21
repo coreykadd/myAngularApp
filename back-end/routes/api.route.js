@@ -53,4 +53,13 @@ router.get('/users', tokenMiddleware.verifyToken, (req, res) => {
     })
 });
 
+router.get('/user', tokenMiddleware.verifyToken, (req, res) => {
+    let userData = req.param;
+    console.log(req);
+
+    User.findOne({_id: userData._id}, (err, doc) => {
+        res.status(200).send({user: doc});
+    });
+});
+
 module.exports = router;

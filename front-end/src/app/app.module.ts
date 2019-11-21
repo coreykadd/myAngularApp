@@ -18,6 +18,7 @@ import { UserModule } from './modules/user/user.module';
 
 import { AuthService } from './shared/services/auth.service';
 import { TokenInterceptorService } from './shared/interceptors/token.interceptor';
+import { AccountComponent } from './account/account.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -27,6 +28,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     HomeComponent,
+    AccountComponent,
     HeaderComponent,
     FooterComponent,
     NotFoundComponent

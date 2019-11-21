@@ -5,13 +5,14 @@ import { User } from '../models/user.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient, private apiService: ApiService) { }
+  constructor(private http: HttpClient, private apiService: ApiService, private authService: AuthService) { }
 
   // API service should have all http calls
   // Data service should hold the data
@@ -21,7 +22,7 @@ export class UserService {
   }
 
   getUser() {
-
+    return this.apiService.get(`${environment.users.user}`, this.authService.getUserId());
   }
 
   createUser() {
