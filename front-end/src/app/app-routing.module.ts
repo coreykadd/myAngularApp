@@ -24,7 +24,8 @@ const routes: Routes = [
     },
     {
         path: 'myaccount',
-        component: AccountComponent
+        component: AccountComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: '',
