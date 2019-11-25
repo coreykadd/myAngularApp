@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { ApiService } from 'src/app/shared/services/api.service';
-import { Login } from 'src/app/shared/models/login.model';
-import { environment } from 'src/environments/environment';
+// import { Injectable } from '@angular/core';
+// import { Login } from 'src/app/shared/models/login.model';
+// import { environment } from 'src/environments/environment';
+// import { UserService } from '../shared/services/user.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AccountService {
+// @Injectable({
+//     providedIn: 'root'
+// })
+// export class AccountService {
 
-  constructor(private apiService: ApiService) { }
+//     constructor(private userService: UserService) { }
 
-  updateAccount(accountDetails: Login) {
-    this.apiService.put(environment.users.user, accountDetails);
-  }
-}
+//     updateAccount(updatedUserDetails: Login, userId: number) {
+//         this.userService.updatedUser(updatedUserDetails, userId);
+//     }
+// }
