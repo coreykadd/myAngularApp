@@ -10,8 +10,6 @@ export class ApplicationDetailsComponent implements OnInit {
     @Input() description: string;
     @Input() routeUrl: string;
 
-    numApps = [];
-
     constructor() {
     }
 

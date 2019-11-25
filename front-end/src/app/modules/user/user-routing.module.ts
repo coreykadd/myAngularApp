@@ -13,7 +13,8 @@ const routes: Routes = [
     },
     {
         path: 'applications/todo',
-        component: TodoAppComponent
+        component: TodoAppComponent,
+        canActivate: [AuthGuard],
     }
 ];
 
