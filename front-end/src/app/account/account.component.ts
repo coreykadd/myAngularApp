@@ -1,36 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import { Login } from 'src/app/shared/models/login.model';
 import { UserService } from 'src/app/shared/services/user.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+    selector: 'app-account',
+    templateUrl: './account.component.html',
+    styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
+    user: any;
+    userForm;
 
-  account: Login;
-  constructor(private userService: UserService) { }
+    constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
-  ngOnInit() {
-    this.getAccount();
-  }
+    ngOnInit() {
+        this.getUser();
+        this.setupUserForm();
+    }
 
-  getAccount() {
-    this.userService.getUser()
-      .subscribe(
-        data => this.onGetUser(data),
-        err => this.onError(err)
-      );
-  }
+    setupUserForm() {
+        this.userForm = this.formBuilder.group({
+            firstName: this.user.firstName || '',
+            lastName: this.user.lastName || '',
+            email: this.user.email || '',
+            phoneNumber: this.user.phoneNumber || '',
+            dob: this.user.dob || ''
+        });
+    }
 
-  onGetUser(data) {
-    this.account = data;
-    console.log(this.account);
-  }
+    getUser() {
+        // this.user = this.userService.currentUser.subscribe(
+        //     res => console.log(res)
+        // );
+        this.user = this.userService.getUser();
+        console.log('  > ', this.user);
+    }
 
-  onError(err) {
-    console.log(err);
-  }
+    onGetUserSuccess(data) {
+        this.user = data;
+        console.log(this.user);
+    }
+
+    onGetUserError(err) {
+        console.log(err);
+    }
 
 }

@@ -1,3 +1,163 @@
-<div class="account-page">
-    <h1 id="header">Account</h1>
+<div class="container p-0">
+  <h1 class="h3 mb-3">Settings</h1>
+
+  <div class="row">
+
+    <!-- Tab items -->
+    <div class="col-md-5 col-xl-4">
+
+      <div class="card">
+
+        <div class="card-header">
+          <h5 class="card-title mb-0">Account Settings</h5>
+        </div>
+
+        <div class="list-group list-group-flush" role="tablist">
+          <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account" role="tab">
+            Account
+          </a>
+
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#password" role="tab">
+            Password
+          </a>
+
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
+            Privacy and safety
+          </a>
+
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
+            Email notifications
+          </a>
+
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
+            Web notifications
+          </a>
+
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
+            Widgets
+          </a>
+
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
+            Your data
+          </a>
+
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#test" role="tab">
+            Delete account
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Fade tabs -->
+    <div class="col-md-7 col-xl-8">
+      <div class="tab-content">
+
+        <!-- Account card -->
+        <div class="tab-pane fade show active" id="account" role="tabpanel">
+          <div class="card mt-1 mt-md-0">
+
+            <div class="card-header">
+              <h5 class="card-title mb-0">Account info</h5>
+            </div>
+
+            <div class="card-body">
+              <form [formGroup]="userForm">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputFirstName">First name</label>
+                    <input type="text" class="form-control" id="inputFirstName" placeholder="First name"
+                      formControlName="firstName">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="inputLastName">Last name</label>
+                    <input type="text" class="form-control" id="inputLastName" placeholder="Last name"
+                      formControlName="lastName">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail">Email</label>
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email" readonly>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputAddress">Address</label>
+                  <input type="text" class="form-control" id="inputAddress" placeholder="Address 1"
+                    formControlName="address1">
+                </div>
+
+                <div class="form-group">
+                  <label for="inputAddress2">Address 2</label>
+                  <input type="text" class="form-control" id="inputAddress2" placeholder="Address 2"
+                    formControlName="address2">
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputCity">Town/City</label>
+                    <input type="text" class="form-control" id="inputCity" placeholder="Town/City"
+                      formControlName="address3">
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="inputCountry">Country</label>
+                    <select id="inputCountry" class="form-control" formControlName="country">
+                      <option selected="">Choose country</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label for="inputZip">Zip</label>
+                    <input type="text" class="form-control" id="inputZip" formControlName="zip">
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Password card-->
+        <div class="tab-pane fade" id="password" role="tabpanel">
+          <div class="card mt-1 mt-md-0">
+
+            <div class="card-header">
+              <h5 class="card-title mb-0">Password info</h5>
+            </div>
+
+            <div class="card-body">
+
+              <form>
+                <div class="form-group">
+                  <label for="inputPasswordCurrent">Current password</label>
+                  <input type="password" class="form-control" id="inputPasswordCurrent">
+                  <small><a href="#">Forgot your password?</a></small>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputPasswordNew">New password</label>
+                  <input type="password" class="form-control" id="inputPasswordNew">
+                </div>
+
+                <div class="form-group">
+                  <label for="inputPasswordNew2">Verify password</label>
+                  <input type="password" class="form-control" id="inputPasswordNew2">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </div>
