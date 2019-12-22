@@ -55,11 +55,27 @@ router.get('/users', tokenMiddleware.verifyToken, (req, res) => {
 
 router.get('/user', tokenMiddleware.verifyToken, (req, res) => {
     let userData = req.param;
-    console.log(req);
 
     User.findOne({_id: userData._id}, (err, doc) => {
-        res.status(200).send({user: doc});
+        if (err) {
+            res.status(404).send({error: err});
+        } else {
+            res.status(200).send({user: doc});
+        }
     });
+});
+
+router.put('/user/:userId', tokenMiddleware.verifyToken, (req, res) => {
+    const userId = req.params.userId;
+    const userBody = req.body;
+
+    User.findOneAndUpdate({_id: userId}, userBody, (err, doc) => {
+        if (err) {
+            res.status(500).send({error: err})
+        } else {
+            res.status(200).send({'Update successful': doc});
+        }
+    }); 
 });
 
 module.exports = router;

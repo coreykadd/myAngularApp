@@ -18,8 +18,9 @@ const userSchema = new Schema({
     address: {
         address1: String,
         address2: String,
+        address3: String,
         country: String,
-        city: String,
+        zip: String
     }
 });
 
